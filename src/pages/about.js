@@ -58,7 +58,7 @@ export default function About() {
                 BIOGRAPHY
               </h2>
               <p className="font-medium ">
-              Hi, I'm <strong>Faisal Almasri</strong>, an AI engineer specializing in computer vision, currently working as a Data Scientist at <strong>Wakeb</strong>.
+              Hi, I&apos;m <strong>Faisal Almasri</strong>, an AI engineer specializing in computer vision, currently working as a Data Scientist at <strong>Wakeb</strong>.
 
 With a background as an instructor and sales representative, I bring a unique blend of technical expertise, business insight, and communication skills to every project.
 
@@ -68,7 +68,7 @@ Passionate about building impactful, functional, and advanced analytical systems
               <em>Fueled by vision. Grounded by expertise. Ready to shape the future, one breakthrough at a time.</em>
               </p>
               <p className="font-medium">
-              Whether it's crafting advanced AI solutions, developing cutting-edge computer vision systems, or transforming data into actionable insights, I bring a relentless commitment to excellence in every project.
+              Whether it&apos;s crafting advanced AI solutions, developing cutting-edge computer vision systems, or transforming data into actionable insights, I bring a relentless commitment to excellence in every project.
 
 From powerful intelligent machine perception, I focus on building solutions that deliver real-world impact. I look forward to collaborating and bringing my passion and skills to your next game-changing project.
               </p>
