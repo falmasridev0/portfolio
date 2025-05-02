@@ -21,7 +21,7 @@ export default function Home() {
           content="Faisal Almasri | Crafting intelligent systems with computer vision, deep learning, and real-time AI. Pioneering projects that push the boundaries of machine perception and shape the future"
         />
         <meta
-        property="og:image" content="https://www.faisense.com/public/images/profile/developer-pic-1.png"/>
+        property="og:image" content="https://www.faisense.com/images/profile/developer-pic-1.png"/>
       </Head>
 
       <TransitionEffect />

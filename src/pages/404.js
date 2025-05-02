@@ -12,9 +12,7 @@ const NotFound = () => {
         <title>PAGE NOT FOUND</title>
         <meta
           name="description"
-          content="Faisal  Faisal Almasri's Next.js developer portfolio and 
-        discover the latest webapp projects and software engineering articles. 
-        Showcase your skills as a full-stack developer and software engineer."
+          content="Faisal Almasri | Crafting intelligent systems with computer vision, deep learning, and real-time AI. Pioneering projects that push the boundaries of machine perception and shape the future"
         />
       </Head>
       <TransitionEffect />
