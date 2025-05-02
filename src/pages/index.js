@@ -20,6 +20,8 @@ export default function Home() {
           name="description"
           content="Faisal Almasri | Crafting intelligent systems with computer vision, deep learning, and real-time AI. Pioneering projects that push the boundaries of machine perception and shape the future"
         />
+        <meta
+        property="og:image" content={profilePic}/>
       </Head>
 
       <TransitionEffect />
