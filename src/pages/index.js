@@ -297,12 +297,28 @@ export default function Home({ projects, articles, experiences, education, skill
 }
 
 export async function getStaticProps() {
+  // Debug: Check if env vars are available
+  console.log('Build-time env check:', {
+    hasProjectId: !!process.env.NEXT_PUBLIC_SANITY_PROJECT_ID,
+    hasDataset: !!process.env.NEXT_PUBLIC_SANITY_DATASET,
+  });
+
   const projects = await getAllProjects();
   const articles = await getAllArticles();
   const experiences = await getAllExperience();
   const education = await getAllEducation();
   const skills = await getAllSkills();
   const about = await getAboutData();
+  
+  // Debug: Log what we got
+  console.log('Fetched data counts:', {
+    projects: projects?.length || 0,
+    articles: articles?.length || 0,
+    experiences: experiences?.length || 0,
+    education: education?.length || 0,
+    skills: skills?.length || 0,
+    hasAbout: !!about,
+  });
   
   // Calculate years of experience from the earliest start date
   let yearsOfExperience = 1; // Default fallback
