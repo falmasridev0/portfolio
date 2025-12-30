@@ -1,6 +1,6 @@
 import { createClient } from '@sanity/client'
 import imageUrlBuilder from '@sanity/image-url'
-import { SANITY_CONFIG, validateEnvVariables } from './constants'
+import { validateEnvVariables } from './constants'
 
 // Validate environment variables on initialization
 if (typeof window === 'undefined') {
@@ -8,10 +8,11 @@ if (typeof window === 'undefined') {
 }
 
 export const client = createClient({
-  projectId: SANITY_CONFIG.projectId,
-  dataset: SANITY_CONFIG.dataset,
-  useCdn: SANITY_CONFIG.useCdn,
-  apiVersion: SANITY_CONFIG.apiVersion,
+  projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || 'u61r0dqj',
+  dataset: process.env.NEXT_PUBLIC_SANITY_DATASET || 'production',
+  useCdn: false,
+  apiVersion: process.env.NEXT_PUBLIC_SANITY_API_VERSION || '2024-01-01',
+  token: process.env.SANITY_API_TOKEN, // Optional: for authenticated requests
 })
 
 // Helper function for generating image URLs
