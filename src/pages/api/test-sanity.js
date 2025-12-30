@@ -1,23 +1,31 @@
-import { getAllExperience, getAllEducation, getAllSkills, getAboutData } from '../../lib/queries'
+import { client } from '../../lib/sanity'
 
 export default async function handler(req, res) {
   try {
-    const [experiences, education, skills, about] = await Promise.all([
-      getAllExperience(),
-      getAllEducation(),
-      getAllSkills(),
-      getAboutData(),
-    ])
+    // Test 1: Check client config
+    const config = {
+      projectId: client.config().projectId,
+      dataset: client.config().dataset,
+      apiVersion: client.config().apiVersion,
+    }
+
+    // Test 2: Try a simple direct query
+    const skillsQuery = `*[_type == "skill"][0..2]{ _id, name }`
+    const skills = await client.fetch(skillsQuery)
+
+    const experienceQuery = `*[_type == "experience"][0..1]{ _id, company }`
+    const experiences = await client.fetch(experienceQuery)
+
+    const aboutQuery = `*[_type == "about"][0]{ _id, name }`
+    const about = await client.fetch(aboutQuery)
 
     res.status(200).json({
       success: true,
-      data: {
-        experiencesCount: experiences?.length || 0,
-        educationCount: education?.length || 0,
-        skillsCount: skills?.length || 0,
-        hasAbout: !!about,
-        experiences: experiences?.slice(0, 1) || [],
-        skills: skills?.slice(0, 2) || [],
+      clientConfig: config,
+      directQueries: {
+        skills: skills || [],
+        experiences: experiences || [],
+        about: about || null,
       }
     })
   } catch (error) {
