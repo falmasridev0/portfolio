@@ -25,7 +25,7 @@ const Details = ({ type, time, place, info }) => {
   );
 };
 
-const Education = () => {
+const Education = ({ education = [] }) => {
   const ref = useRef(null);
 
   const { scrollYProgress } = useScroll({
@@ -43,14 +43,21 @@ const Education = () => {
           style={{ scaleY: scrollYProgress }}
         />
         <ul className="w-full flex flex-col items-start justify-between ml-4">
-          <Details
-            type="Bachelor of Science in Computer Science"
-            time="2020-2025"
-            place="Imam Muhammad ibn Saud Islamic University"
-            info="The program provided a solid foundation in core computing principles, including programming, data structures, and algorithms. After mastering these fundamentals, I specialized in Artificial Intelligence, focusing on advanced topics such as machine learning, and image processing. This combination of foundational knowledge and specialized AI coursework has equipped me to tackle complex challenges in the tech industry."
-          />
-
-        
+          {education.length > 0 ? (
+            education.map((edu) => (
+              <Details
+                key={edu._id}
+                type={edu.degree}
+                time={`${edu.startYear}-${edu.endYear}`}
+                place={edu.institution}
+                info={edu.description}
+              />
+            ))
+          ) : (
+            <li className="text-center w-full text-dark/75 dark:text-light/75">
+              No education data available
+            </li>
+          )}
         </ul>
       </div>
     </div>

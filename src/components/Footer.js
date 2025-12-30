@@ -1,6 +1,7 @@
 import Link from "next/link";
 import React from "react";
 import Layout from "./Layout";
+import { SITE_CONFIG } from "@/lib/constants";
 
 const Footer = () => {
   return (
@@ -14,13 +15,13 @@ const Footer = () => {
 
         <div className="flex items-center lg:py-2">
           Built by&nbsp;
-
-          Faisal Almasri
+          {SITE_CONFIG.name}
         </div>
 
         <Link
-          href="https://wa.me/qr/FSS3SLWXZBEYH1"
+          href={SITE_CONFIG.whatsappLink}
           target="_blank"
+          rel="noopener noreferrer"
           className="underline underline-offset-2"
         >
           Whatsapp

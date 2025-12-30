@@ -21,8 +21,13 @@ const Skill = ({ name, x, y }) => {
   );
 };
 
-const Skills = () => {
+const Skills = ({ skills = [] }) => {
   const ref = useRef(null);
+  
+  // Separate center skill from others
+  const centerSkill = skills.find(skill => skill.isCenter);
+  const otherSkills = skills.filter(skill => !skill.isCenter);
+  
   return (
 <>
       <h2 className="font-bold text-8xl mt-64 w-full text-center md:text-6xl md:mt-32">
@@ -40,11 +45,16 @@ const Skills = () => {
         <motion.div whileHover={{scale:1.05}} className="cursor-pointer flex rounded-full font-semibold bg-dark text-light p-8 shadow-dark
         dark:bg-light dark:text-dark lg:p-6 md:p-4 xs:text-xs xs:p-2
         ">
-        AI
+        {centerSkill ? centerSkill.name : 'AI'}
       </motion.div>
 
-        <Skill name="Computer Vision" x="-20vw" y="2vw" />
-
+      {otherSkills.length > 0 ? (
+        otherSkills.map((skill) => (
+          <Skill key={skill._id} name={skill.name} x={skill.x} y={skill.y} />
+        ))
+      ) : (
+        <>
+          <Skill name="Computer Vision" x="-20vw" y="2vw" />
           <Skill name="Image Processing" x="-5vw" y="-10vw" />
           <Skill name="Teaching" x="20vw" y="6vw" />
           <Skill name="Teamwork" x="0vw" y="12vw" />
@@ -56,6 +66,8 @@ const Skills = () => {
           <Skill name="Docker" x="-25vw" y="18vw" />
           <Skill name="DVC" x="28vw" y="18vw" />
           <Skill name="Tensorboard" x="11vw" y="10vw" />
+        </>
+      )}
     </div></>
   );
 };

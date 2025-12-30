@@ -21,13 +21,18 @@ const Details = ({ position, company, companyLink, time, address, work }) => {
       >
         <h3 className="capitalize font-bold text-2xl sm:text-xl xs:text-lg">
           {position}{" "}
-          <a
-            className="capitalize text-primary dark:text-primaryDark"
-            href={companyLink}
-            target={"_blank"}
-          >
-            @{company}
-          </a>
+          {companyLink ? (
+            <a
+              className="capitalize text-primary dark:text-primaryDark"
+              href={companyLink}
+              target={"_blank"}
+              rel="noopener noreferrer"
+            >
+              @{company}
+            </a>
+          ) : (
+            <span className="capitalize text-primary dark:text-primaryDark">@{company}</span>
+          )}
         </h3>
         <span className="capitalize text-dark/75 font-medium dark:text-light/50 xs:text-sm">
           {time} | {address}
@@ -38,7 +43,7 @@ const Details = ({ position, company, companyLink, time, address, work }) => {
   );
 };
 
-const Experience = () => {
+const Experience = ({ experiences = [] }) => {
 
   const ref = useRef(null);
 
@@ -46,6 +51,12 @@ const Experience = () => {
     target: ref,
     offset: ["start end", "center start"],
   });
+
+  // Format date for display
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    return date.toLocaleDateString('en-US', { month: 'short', year: 'numeric' });
+  };
 
   return (
 
@@ -61,33 +72,23 @@ const Experience = () => {
             style={{ scaleY: scrollYProgress }}
           />
           <ul className="w-full flex flex-col items-start justify-between ml-4 xs:ml-2">
-            <Details
-              position="Data Scientist"
-              company="Wakeb_data"
-              companyLink="https://wakeb.tech/"
-              time="Mar 2025 - Present"
-              address="Saudi Arabia, Riyadh"
-              work="Coop training."
-            />
-
-            <Details
-              position="Sales Representative"
-              company="Jarir Bookstore"
-              companyLink="https://www.jarir.com"
-              time="May 2023 - Jan 2025"
-              address="Saudi Arabia, Riyadh"
-              work="(While I was a student) I
-              Utilized analytical skills to help customers find the best products, while training and supporting new team members. Applied management updates and promotions accurately, ensuring all processes ran smoothly. Maintained a well-organized and efficient sales area, optimizing the customer experience."
-            />
-
-            <Details
-              position="Instructor"
-              company="Baims"
-              companyLink="https://app.baims.com/"
-              time="Jun 2022- Feb 2023"
-              address="Saudi Arabia, Riyadh"
-              work="Created content to explain the CS150 subject, covering programming fundamentals and Java syntax. Actively answered students' questions and conducted live sessions to review key concepts before exams, ensuring thorough understanding."
-            />
+            {experiences.length > 0 ? (
+              experiences.map((exp) => (
+                <Details
+                  key={exp._id}
+                  position={exp.position}
+                  company={exp.company}
+                  companyLink={exp.companyLink}
+                  time={`${formatDate(exp.startDate)} - ${exp.endDate ? formatDate(exp.endDate) : 'Present'}`}
+                  address={exp.location}
+                  work={exp.description}
+                />
+              ))
+            ) : (
+              <li className="text-center w-full text-dark/75 dark:text-light/75">
+                No experience data available
+              </li>
+            )}
           </ul>
         </div>
         </div>

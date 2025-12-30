@@ -1,3 +1,107 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    @apply transition-colors duration-300;
+  }
+}
+
+@layer utilities {
+  /* Gradient Text */
+  .gradient-text {
+    @apply bg-gradient-to-r from-primary to-primaryDark bg-clip-text text-transparent;
+  }
+  
+  /* Card Hover Effects */
+  .card-hover {
+    @apply transition-all duration-300 ease-out;
+  }
+  
+  .card-hover:hover {
+    @apply transform -translate-y-2 shadow-2xl;
+  }
+  
+  /* Glow Effect */
+  .glow {
+    @apply shadow-lg shadow-primary/20 dark:shadow-primaryDark/20;
+  }
+  
+  .glow-hover:hover {
+    @apply shadow-xl shadow-primary/40 dark:shadow-primaryDark/40;
+  }
+  
+  /* Section Backgrounds */
+  .section-alt {
+    @apply bg-gradient-to-b from-light to-light/50 dark:from-dark dark:to-dark/50;
+  }
+  
+  /* Animated Border */
+  .animated-border {
+    @apply relative overflow-hidden;
+  }
+  
+  .animated-border::before {
+    content: '';
+    @apply absolute inset-0 rounded-2xl;
+    background: linear-gradient(45deg, #B63E96, #58E6D9, #B63E96);
+    background-size: 200% 200%;
+    animation: gradient 3s ease infinite;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  
+  .animated-border:hover::before {
+    opacity: 1;
+  }
+  
+  @keyframes gradient {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+  
+  /* Pulse Animation */
+  .pulse-slow {
+    animation: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+  
+  /* Scroll Indicator */
+  .scroll-indicator {
+    animation: bounce 2s infinite;
+  }
+  
+  @keyframes bounce {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(10px);
+    }
+  }
+  
+  /* Frosted Glass */
+  .glass {
+    @apply backdrop-blur-md bg-light/80 dark:bg-dark/80;
+  }
+  
+  /* Tech Badge */
+  .tech-badge {
+    @apply inline-block px-3 py-1 text-xs font-semibold rounded-full;
+    @apply bg-primary/10 text-primary dark:bg-primaryDark/10 dark:text-primaryDark;
+    @apply border border-primary/20 dark:border-primaryDark/20;
+  }
+  
+  /* Category Badge */
+  .category-badge {
+    @apply inline-block px-4 py-2 text-sm font-bold rounded-lg;
+    @apply bg-gradient-to-r from-primary to-primaryDark text-white;
+    @apply shadow-md hover:shadow-lg transition-shadow duration-300;
+  }
+}
+

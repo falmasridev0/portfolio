@@ -1,5 +1,5 @@
 import Footer from "@/components/Footer";
-import Navbar from "@/components/Navbar";
+import NavbarSinglePage from "@/components/NavbarSinglePage";
 import "@/styles/globals.css";
 import { AnimatePresence } from "framer-motion";
 // pages/_app.js
@@ -22,7 +22,7 @@ export default function App({ Component, pageProps }) {
       <main
         className={`${montserrat.variable} font-mont  bg-light dark:bg-dark w-full min-h-screen h-full`}
       >
-        <Navbar />
+        <NavbarSinglePage />
         <AnimatePresence initial={false} mode="wait">
           <Component key={router.asPath} {...pageProps} />
         </AnimatePresence>
