@@ -25,7 +25,6 @@ export function validateEnvVariables() {
   const required = [
     'NEXT_PUBLIC_SANITY_PROJECT_ID',
     'NEXT_PUBLIC_SANITY_DATASET',
-    'NEXT_PUBLIC_SANITY_API_VERSION',
   ]
 
   const missing = required.filter((key) => !process.env[key])
